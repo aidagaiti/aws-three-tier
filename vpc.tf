@@ -58,7 +58,7 @@ resource "aws_subnet" "private3" {
 
 
 
-# Creating Internet Gateway 
+# Creating Internet Gateway to give our subnet access to the outside world
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.project-vpc.id
 }
@@ -91,7 +91,7 @@ resource "aws_route_table_association" "rt3" {
 }
 
 
-# Creating NAT Gateway
+# NAT gateway to give our private subnets to access to the outside world
 resource "aws_nat_gateway" "NG" {
   connectivity_type = "private"
   subnet_id         = aws_subnet.private1.id
